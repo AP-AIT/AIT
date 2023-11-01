@@ -1,7 +1,7 @@
 import streamlit as st
 import imaplib
 import email
-from bs4 import BeautifulSoup
+import bs4
 import re
 import pandas as pd
 
@@ -14,7 +14,7 @@ password = st.text_input("Enter your email password", type="password")
 
 # Function to extract information from HTML content
 def extract_info_from_html(html_content):
-    soup = BeautifulSoup(html_content, 'html.parser')
+    soup = bs4(html_content, 'html.parser')
     name_element = soup.find(string=re.compile(r'Name', re.IGNORECASE))
     email_element = soup.find(string=re.compile(r'Email', re.IGNORECASE))
     workshop_element = soup.find(string=re.compile(r'Workshop Detail', re.IGNORECASE))
